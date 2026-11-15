@@ -30,11 +30,12 @@ ADAPTER_CATALOG_URL=https://github.com/JustinHuang917/gaia-connection-packages
 ## 发布连接包
 
 1. 修改对应目录的代码、Schema、依赖与 `adapter.yaml`，变更时递增 `version`。
-2. 在仓库根目录运行（需要 Go 1.23+）：
+2. 在仓库根目录运行（需要 Python 3.10+）：
 
    ```sh
-   go run ./tools/catalog
-   go run ./tools/catalog -check
+   python3 -m pip install -r tools/requirements.txt
+   python3 tools/catalog.py
+   python3 tools/catalog.py --check
    ```
 
 3. 将包内容与生成的 `catalog.json` 一并提交、推送。
@@ -46,15 +47,19 @@ ADAPTER_CATALOG_URL=https://github.com/JustinHuang917/gaia-connection-packages
 {
   "schema": "gaia.connection-catalog/v1",
   "packages": [
-    {"id": "hacker-news", "version": "1.1.0", "path": "hacker-news", "sha256": "<generated ZIP SHA-256>"}
+    {"id": "hacker-news", "version": "1.1.0", "path": "hacker-news", "sha256": "<generated content SHA-256>"}
   ]
 }
 ```
 
-`sha256` 是服务端确定性 ZIP 的摘要，不能使用目录摘要、Git commit 或普通 zip 命令的输出代替。生成工具与服务端使用相同的文件排序、Deflate 编码、0644 权限与 1980-01-01 UTC 时间戳。包目录只存放发布内容，不加入缓存、ZIP、可执行文件或符号链接。
+`sha256` 是包内容摘要，与 ZIP 压缩实现无关。对按路径排序的每个文件，依次写入 UTF-8 相对路径、NUL、文件字节数的十进制 ASCII、NUL、原始文件字节，再计算整个流的 SHA-256。不要使用 Git commit 或 ZIP 文件摘要替代。服务端安装时对解包后的文件执行相同校验。
+
+包目录只存放发布内容，不加入缓存、ZIP、可执行文件或符号链接。
 
 可生成临时 ZIP 用于服务端包校验：
 
 ```sh
-go run ./tools/catalog -check -out-dir /tmp/gaia-connection-packages
+python3 tools/catalog.py --check --out-dir /tmp/gaia-connection-packages
 ```
+
+此目录采用内容摘要协议，服务端需包含对应的 catalog 内容摘要校验更新。

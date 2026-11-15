@@ -5,61 +5,61 @@
       "id": "bilibili",
       "version": "2.1.1",
       "path": "bilibili",
-      "sha256": "ad657fdde33b5114439e87d0b491fb0810d2465d2feff099aa417521b59386b0"
+      "sha256": "e0dddd31902393f61bc85ed798f2d3dacf028143bc1f67a0f94106bd898eccb2"
     },
     {
       "id": "coros-gateway",
       "version": "1.0.0",
       "path": "coros",
-      "sha256": "3a8219563497571cbf43a4eda3631a42789b00ea1745934f91b63004dc68a8f4"
+      "sha256": "69aec7144137cd68df93cf8d8c4eb2c93703c8aaf815d32490b8876a82fbe1c4"
     },
     {
       "id": "finance-market-public-public",
       "version": "2.0.0",
       "path": "finance-market",
-      "sha256": "b1418cec577a0b4f6a4435001c3069612c2c89e92f504e3704c87f7787f94962"
+      "sha256": "2affba2ed9ad2c8231a1903cc5a119733d6ae16069be01eb9fc9f1a4b0aa989c"
     },
     {
       "id": "hacker-news",
       "version": "1.1.0",
       "path": "hacker-news",
-      "sha256": "9510dfbecdca488f1c616baf4951c2b43c993e2f4410f88f6c0cbd0f136603a1"
+      "sha256": "49a76ff72e9693f0a6af2960759bb58f4224be69c10a8aa996e535d1de87ea5d"
     },
     {
       "id": "instagram",
       "version": "1.0.0",
       "path": "instagram",
-      "sha256": "0d23db038cfda7575b0c305b99ba4db0eb9d94da553d9e7ea2c791a29b4f9ba3"
+      "sha256": "55864410fd5a3781174cdf3d0a6f7cdf23a1888d4e7abf111cb06987c6d848ca"
     },
     {
       "id": "public-web",
       "version": "1.2.0",
       "path": "public-web",
-      "sha256": "1ef3ac8339c61fb1abd3bcf1d0d109e5d61f57138de6f6edeb11cffd378111d6"
+      "sha256": "829b7bfb51f45ec5e94c4b8da331d859d9a16df2b5f716d3421590d0c7ee4db8"
     },
     {
       "id": "reddit",
       "version": "1.0.2",
       "path": "reddit",
-      "sha256": "09a0e1f6c2a50800f6a9308e710c63e12a39726bac692e26446b7839b7b2cf6f"
+      "sha256": "ac244fe2489e1875c546a0a63ed64b0a455b54ffb219874ca9931488f300aab4"
     },
     {
       "id": "x-twitter",
       "version": "1.1.0",
       "path": "x-twitter",
-      "sha256": "2c1645d3249fd16faf77f0021c644cf711c1adb0e19789a37ff53998aded57c5"
+      "sha256": "c35c3430624c56a1188ac42a4a39a2fabf00bc403c4396e277232abc701ac014"
     },
     {
       "id": "xiaohongshu",
       "version": "1.0.8",
       "path": "xiaohongshu",
-      "sha256": "0e63e9fb6b4a7289a5d153ae39d6a2faf16f24d0186623edc2130114408f6d88"
+      "sha256": "5e6fcedc584694e7868b42b525e3e3d35e00ba33ee2607e8d62e9348bd7e2d43"
     },
     {
       "id": "youtube",
       "version": "1.1.2",
       "path": "youtube",
-      "sha256": "708c74d01190361a1f6638b41389fdbd378ae4d3ee8bf0e8283f1760ff995a54"
+      "sha256": "cc3a67609f7be9b6a0811839f84cdef929a15afc907728d4b2eb728433ba0b8a"
     }
   ]
 }
