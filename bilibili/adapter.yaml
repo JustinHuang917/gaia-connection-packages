@@ -1,0 +1,10 @@
+schema: gaia.connection-adapter/v1
+id: bilibili
+version: 2.1.1
+protocol: http
+runtime: cli
+tool: bili-cli
+auth:
+  type: native_cli
+network:
+  allowed_hosts: [api.bilibili.com, passport.bilibili.com, www.bilibili.com]

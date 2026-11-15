@@ -1,0 +1,1 @@
+# Platform managed browser; no package dependencies.

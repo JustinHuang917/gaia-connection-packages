@@ -1,0 +1,80 @@
+{
+  "read": {
+    "title": "阅读公开网页",
+    "description": "无登录态浏览器渲染 HTTPS 公网页面，返回标题、正文和链接。不会读取其他连接的账号状态，不绕过登录或验证码。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://",
+          "title": "网页地址"
+        },
+        "max_chars": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 30000,
+          "default": 12000,
+          "title": "最多正文字符"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "additionalProperties": false
+    },
+    "browser_action": {
+      "kind": "public_page",
+      "requires_auth": false
+    }
+  },
+  "find": {
+    "title": "查找页面关键词",
+    "description": "在当前渲染页面的可见正文中查找字面关键词（不区分大小写），返回字符位置和上下文。不自动展开或翻页。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://",
+          "title": "网页地址"
+        },
+        "keyword": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300,
+          "pattern": "\\S",
+          "title": "关键词"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "default": 20,
+          "title": "最多匹配条数"
+        },
+        "context_chars": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2000,
+          "default": 100,
+          "title": "前后各返回字符数",
+          "description": "匹配词前后各保留多少个 Unicode 字符；0 只返回匹配词。"
+        }
+      },
+      "required": [
+        "url",
+        "keyword"
+      ],
+      "additionalProperties": false
+    },
+    "browser_action": {
+      "kind": "public_page",
+      "requires_auth": false
+    }
+  }
+}

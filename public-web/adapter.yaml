@@ -1,0 +1,13 @@
+schema: gaia.connection-adapter/v1
+id: public-web
+version: 1.2.0
+protocol: browser
+runtime: browser
+auth:
+  type: none
+browser:
+  engine: playwright
+  name: Public Web
+  public: true
+network:
+  allowed_hosts: []

@@ -1,0 +1,10 @@
+schema: gaia.connection-adapter/v1
+id: finance-market-public-public
+version: 2.0.0
+protocol: http
+runtime: cli
+tool: finance-market
+auth:
+  type: none
+network:
+  allowed_hosts: [qt.gtimg.cn, finance.qq.com, push2.eastmoney.com, push2his.eastmoney.com, query1.finance.yahoo.com, query2.finance.yahoo.com, fc.yahoo.com]

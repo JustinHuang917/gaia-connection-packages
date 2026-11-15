@@ -1,0 +1,13 @@
+schema: gaia.connection-adapter/v1
+id: coros-gateway
+version: 1.0.0
+protocol: mcp
+runtime: python3
+entrypoints:
+  start_auth: adapter.auth:start_auth
+  poll_auth: adapter.auth:poll_auth
+  refresh_auth: adapter.auth:refresh_auth
+  test_connection: adapter.auth:test_connection
+  invoke: adapter.auth:invoke
+network:
+  allowed_hosts: [mcp.coros.com, mcpcn.coros.com, mcpeu.coros.com, mcpus.coros.com]

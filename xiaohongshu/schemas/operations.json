@@ -1,0 +1,173 @@
+{
+  "search": {
+    "title": "搜索笔记",
+    "description": "使用登录浏览器搜索，最多返回20条已加载笔记，保留笔记访问参数。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "title": "关键词",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "limit": {
+          "type": "integer",
+          "title": "最多条数",
+          "minimum": 1,
+          "maximum": 20,
+          "default": 5
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "additionalProperties": false
+    },
+    "browser_action": {
+      "kind": "records",
+      "requires_auth": true,
+      "url_template": "https://www.xiaohongshu.com/search_result_ai?keyword={query}&source=web_explore_feed",
+      "root_selector": "#app",
+      "item_selector": "section.note-item",
+      "ready_selector": "section.note-item, .search-empty, .no-result",
+      "empty_selector": ".search-empty, .no-result",
+      "fields": {
+        "title": {
+          "selector": ".title span, .title"
+        },
+        "url": {
+          "selector": "a.cover, a[href*=\"/explore/\"], a[href*=\"/search_result/\"]",
+          "attribute": "href"
+        },
+        "author": {
+          "selector": ".author .name, .author-wrapper .name"
+        },
+        "likes": {
+          "selector": ".like-wrapper .count"
+        }
+      },
+      "default_limit": 5,
+      "max_scrolls": 2
+    }
+  },
+  "read": {
+    "title": "读取笔记",
+    "description": "读取正文与已加载评论；页面限制或尚未加载时明确报错，不导出完整评论历史。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "title": "完整笔记链接",
+          "description": "优先粘贴搜索结果的完整URL，保留xsec_token；支持xhslink.com短链接。",
+          "maxLength": 4000,
+          "pattern": "^https://(?:(?:www\\.)?(?:xiaohongshu|rednote)\\.com/(?:explore|search_result)/[A-Za-z0-9_-]+|xhslink\\.com/[A-Za-z0-9/_-]+)(?:\\?[^\\s#]*)?(?:#[^\\s]*)?$"
+        }
+      },
+      "required": [
+        "target"
+      ],
+      "additionalProperties": false
+    },
+    "browser_action": {
+      "kind": "detail",
+      "requires_auth": true,
+      "url_parameter": "target",
+      "root_selector": "#app",
+      "item_selector": "#noteContainer, .note-detail-container",
+      "fields": {
+        "title": {
+          "selector": "#detail-title, .title"
+        },
+        "text": {
+          "selector": "#detail-desc, .desc"
+        },
+        "author": {
+          "selector": ".author-container .username, .author-wrapper .username"
+        },
+        "published_at": {
+          "selector": ".bottom-container .date, .date"
+        },
+        "likes": {
+          "selector": ".like-wrapper .count"
+        },
+        "collects": {
+          "selector": ".collect-wrapper .count"
+        }
+      },
+      "page_url_field": "url",
+      "default_limit": 1,
+      "max_scrolls": 0,
+      "comment_selector": ".comments-container .comment-item",
+      "comment_fields": {
+        "author": {
+          "selector": ".author .name, .author-wrapper .name"
+        },
+        "text": {
+          "selector": ".content, .note-text"
+        },
+        "published_at": {
+          "selector": ".date"
+        },
+        "likes": {
+          "selector": ".like .count, .like-wrapper .count"
+        }
+      },
+      "comment_limit": 20
+    }
+  },
+  "comments": {
+    "title": "读取已加载评论",
+    "description": "读取页面已加载评论及回复，不展开未加载的回复，不代表全部评论。最多50条。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "title": "完整笔记链接",
+          "description": "优先粘贴搜索结果的完整URL，保留xsec_token；支持xhslink.com短链接。",
+          "maxLength": 4000,
+          "pattern": "^https://(?:(?:www\\.)?(?:xiaohongshu|rednote)\\.com/(?:explore|search_result)/[A-Za-z0-9_-]+|xhslink\\.com/[A-Za-z0-9/_-]+)(?:\\?[^\\s#]*)?(?:#[^\\s]*)?$"
+        },
+        "limit": {
+          "type": "integer",
+          "title": "最多条数",
+          "minimum": 1,
+          "maximum": 50,
+          "default": 20
+        }
+      },
+      "required": [
+        "target"
+      ],
+      "additionalProperties": false
+    },
+    "browser_action": {
+      "kind": "records",
+      "requires_auth": true,
+      "url_parameter": "target",
+      "root_selector": "#app",
+      "item_selector": ".comments-container .comment-item",
+      "fields": {
+        "author": {
+          "selector": ".author .name, .author-wrapper .name"
+        },
+        "text": {
+          "selector": ".content, .note-text"
+        },
+        "published_at": {
+          "selector": ".date"
+        },
+        "likes": {
+          "selector": ".like .count, .like-wrapper .count"
+        }
+      },
+      "default_limit": 20,
+      "max_scrolls": 0
+    }
+  }
+}

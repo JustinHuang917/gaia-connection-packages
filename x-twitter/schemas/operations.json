@@ -1,0 +1,240 @@
+{
+  "search": {
+    "title": "搜索推文",
+    "description": "搜索实际可见的推文，返回正文、作者、时间和链接。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "title": "搜索词",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "limit": {
+          "type": "integer",
+          "title": "最多条数",
+          "minimum": 1,
+          "maximum": 20,
+          "default": 5
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "additionalProperties": false
+    },
+    "browser_action": {
+      "kind": "records",
+      "url_template": "https://x.com/search?q={query}&src=typed_query&f=live",
+      "item_selector": "article[data-testid=\"tweet\"]",
+      "fields": {
+        "url": {
+          "selector": "a[href*=\"/status/\"]:has(time)",
+          "attribute": "href"
+        },
+        "text": {
+          "selector": "[data-testid=\"tweetText\"]"
+        },
+        "author": {
+          "selector": "[data-testid=\"User-Name\"]"
+        },
+        "published_at": {
+          "selector": "time",
+          "attribute": "datetime"
+        },
+        "replies": {
+          "selector": "[data-testid=\"reply\"]",
+          "attribute": "aria-label"
+        },
+        "reposts": {
+          "selector": "[data-testid=\"retweet\"]",
+          "attribute": "aria-label"
+        },
+        "likes": {
+          "selector": "[data-testid=\"like\"]",
+          "attribute": "aria-label"
+        }
+      },
+      "default_limit": 5,
+      "max_scrolls": 3,
+      "empty_selector": "[data-testid=\"emptyState\"]"
+    }
+  },
+  "profile": {
+    "title": "用户资料",
+    "description": "读取用户简介、位置、网站、加入时间和关注信息；未展示字段省略。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "title": "X 用户名（不带 @）",
+          "pattern": "^[A-Za-z0-9_]{1,15}$"
+        }
+      },
+      "required": [
+        "username"
+      ],
+      "additionalProperties": false
+    },
+    "browser_action": {
+      "kind": "records",
+      "url_template": "https://x.com/{username}",
+      "item_selector": "main [data-testid=\"primaryColumn\"]",
+      "ready_selector": "[data-testid=\"UserName\"]",
+      "default_limit": 1,
+      "max_scrolls": 0,
+      "fields": {
+        "name": {
+          "selector": "[data-testid=\"UserName\"]"
+        },
+        "text": {
+          "selector": "[data-testid=\"UserDescription\"]"
+        },
+        "location": {
+          "selector": "[data-testid=\"UserLocation\"]"
+        },
+        "website": {
+          "selector": "[data-testid=\"UserUrl\"]",
+          "attribute": "href"
+        },
+        "joined": {
+          "selector": "[data-testid=\"UserJoinDate\"]"
+        },
+        "following": {
+          "selector": "a[href$=\"/following\"]"
+        },
+        "followers": {
+          "selector": "a[href$=\"/verified_followers\"],a[href$=\"/followers\"]"
+        }
+      },
+      "page_url_field": "url"
+    }
+  },
+  "tweets": {
+    "title": "最近推文",
+    "description": "读取指定用户当前可加载的最近推文；含正文，不承诺完整历史。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "title": "X 用户名（不带 @）",
+          "pattern": "^[A-Za-z0-9_]{1,15}$"
+        },
+        "limit": {
+          "type": "integer",
+          "title": "最多条数",
+          "minimum": 1,
+          "maximum": 20,
+          "default": 5
+        }
+      },
+      "required": [
+        "username"
+      ],
+      "additionalProperties": false
+    },
+    "browser_action": {
+      "kind": "records",
+      "url_template": "https://x.com/{username}",
+      "item_selector": "article[data-testid=\"tweet\"]",
+      "fields": {
+        "url": {
+          "selector": "a[href*=\"/status/\"]:has(time)",
+          "attribute": "href"
+        },
+        "text": {
+          "selector": "[data-testid=\"tweetText\"]"
+        },
+        "author": {
+          "selector": "[data-testid=\"User-Name\"]"
+        },
+        "published_at": {
+          "selector": "time",
+          "attribute": "datetime"
+        },
+        "replies": {
+          "selector": "[data-testid=\"reply\"]",
+          "attribute": "aria-label"
+        },
+        "reposts": {
+          "selector": "[data-testid=\"retweet\"]",
+          "attribute": "aria-label"
+        },
+        "likes": {
+          "selector": "[data-testid=\"like\"]",
+          "attribute": "aria-label"
+        }
+      },
+      "default_limit": 5,
+      "max_scrolls": 3,
+      "empty_selector": "[data-testid=\"emptyState\"]"
+    }
+  },
+  "thread": {
+    "title": "推文与回复",
+    "description": "读取目标推文及当前可加载的回复，不保证完整评论流。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "title": "推文 ID 或 X/Twitter 链接",
+          "maxLength": 300,
+          "pattern": "^(?:[0-9]+|https://(?:www\\.)?(?:x\\.com|twitter\\.com)/(?:[A-Za-z0-9_]+/status|i/status)/[0-9]+/?(?:\\?[^#]*)?)$"
+        }
+      },
+      "required": [
+        "target"
+      ],
+      "additionalProperties": false
+    },
+    "browser_action": {
+      "kind": "records",
+      "url_template": "https://x.com/i/status/{target}",
+      "item_selector": "article[data-testid=\"tweet\"]",
+      "fields": {
+        "url": {
+          "selector": "a[href*=\"/status/\"]:has(time)",
+          "attribute": "href"
+        },
+        "text": {
+          "selector": "[data-testid=\"tweetText\"]"
+        },
+        "author": {
+          "selector": "[data-testid=\"User-Name\"]"
+        },
+        "published_at": {
+          "selector": "time",
+          "attribute": "datetime"
+        },
+        "replies": {
+          "selector": "[data-testid=\"reply\"]",
+          "attribute": "aria-label"
+        },
+        "reposts": {
+          "selector": "[data-testid=\"retweet\"]",
+          "attribute": "aria-label"
+        },
+        "likes": {
+          "selector": "[data-testid=\"like\"]",
+          "attribute": "aria-label"
+        }
+      },
+      "default_limit": 30,
+      "max_scrolls": 3,
+      "parameter_extractors": {
+        "target": {
+          "pattern": "^(?:https://(?:www\\.)?(?:x\\.com|twitter\\.com)/(?:[A-Za-z0-9_]+/status|i/status)/)?([0-9]+)/?(?:\\?.*)?$",
+          "group": 1
+        }
+      }
+    }
+  }
+}

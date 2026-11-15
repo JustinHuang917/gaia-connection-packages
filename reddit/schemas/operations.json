@@ -1,0 +1,219 @@
+{
+  "search": {
+    "title": "搜索帖子",
+    "description": "搜索 Reddit 公开帖子；平台限制时明确报错。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "title": "搜索词",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "limit": {
+          "type": "integer",
+          "title": "最多条数",
+          "minimum": 1,
+          "maximum": 20,
+          "default": 5
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "additionalProperties": false
+    },
+    "browser_action": {
+      "kind": "records",
+      "requires_auth": false,
+      "url_template": "https://old.reddit.com/search?q={query}&type=link",
+      "item_selector": ".search-result-link",
+      "fields": {
+        "title": {
+          "selector": "a.search-title"
+        },
+        "url": {
+          "selector": "a.search-comments",
+          "attribute": "href"
+        },
+        "author": {
+          "selector": ".author"
+        },
+        "published_at": {
+          "selector": "time",
+          "attribute": "datetime"
+        },
+        "subreddit": {
+          "selector": "a.search-subreddit"
+        },
+        "score": {
+          "selector": ".search-score"
+        },
+        "comments": {
+          "selector": "a.search-comments"
+        }
+      },
+      "default_limit": 5,
+      "max_scrolls": 2,
+      "empty_selector": ".search-result-listing .noresults, #siteTable .noresults",
+      "root_selector": "div.content"
+    }
+  },
+  "read": {
+    "title": "帖子正文与评论",
+    "description": "读取指定帖子及最多20条已加载评论，合并正文并保留原始帖子/评论结构。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "title": "Reddit 帖子链接或 ID",
+          "maxLength": 400,
+          "pattern": "^(?:https://(?:(?:www\\.|old\\.)?reddit\\.com/(?:r/[A-Za-z0-9_]+/)?comments/|redd\\.it/))?([A-Za-z0-9]+)(?:/[^?]*)?(?:\\?.*)?$"
+        }
+      },
+      "required": [
+        "target"
+      ],
+      "additionalProperties": false
+    },
+    "browser_action": {
+      "kind": "detail",
+      "requires_auth": false,
+      "url_template": "https://old.reddit.com/comments/{target}/",
+      "item_selector": "#siteTable .thing.link",
+      "fields": {
+        "title": {
+          "selector": "a.title"
+        },
+        "url": {
+          "selector": "a.bylink",
+          "attribute": "href"
+        },
+        "author": {
+          "selector": ".entry .author"
+        },
+        "text": {
+          "selector": ".entry .usertext-body"
+        },
+        "published_at": {
+          "selector": ".entry time",
+          "attribute": "datetime"
+        },
+        "score": {
+          "selector": ".entry .score",
+          "attribute": "title"
+        },
+        "subreddit": {
+          "selector": ".entry .subreddit"
+        },
+        "comments": {
+          "selector": ".entry a.comments"
+        }
+      },
+      "default_limit": 1,
+      "max_scrolls": 0,
+      "empty_selector": ".search-result-listing .noresults, #siteTable .noresults",
+      "parameter_extractors": {
+        "target": {
+          "pattern": "^(?:https://(?:(?:www\\.|old\\.)?reddit\\.com/(?:r/[A-Za-z0-9_]+/)?comments/|redd\\.it/))?([A-Za-z0-9]+)(?:/[^?]*)?(?:\\?.*)?$",
+          "group": 1
+        }
+      },
+      "comment_selector": ".commentarea .thing.comment",
+      "comment_fields": {
+        "author": {
+          "selector": ".entry .author"
+        },
+        "text": {
+          "selector": ".entry .usertext-body"
+        },
+        "published_at": {
+          "selector": ".entry time",
+          "attribute": "datetime"
+        },
+        "url": {
+          "selector": ".entry a.bylink",
+          "attribute": "href"
+        }
+      },
+      "comment_limit": 20,
+      "root_selector": "div.content"
+    }
+  },
+  "subreddit": {
+    "title": "社区最新帖子",
+    "description": "读取社区最新帖子；社区名称可带 r/ 前缀。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "社区名称",
+          "maxLength": 24,
+          "pattern": "^(?:r/)?[A-Za-z0-9_]{2,21}$"
+        },
+        "limit": {
+          "type": "integer",
+          "title": "最多条数",
+          "minimum": 1,
+          "maximum": 20,
+          "default": 5
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "browser_action": {
+      "kind": "records",
+      "requires_auth": false,
+      "url_template": "https://old.reddit.com/r/{name}/new/",
+      "item_selector": "#siteTable .thing.link",
+      "fields": {
+        "title": {
+          "selector": "a.title"
+        },
+        "url": {
+          "selector": "a.bylink",
+          "attribute": "href"
+        },
+        "author": {
+          "selector": ".entry .author"
+        },
+        "text": {
+          "selector": ".entry .usertext-body"
+        },
+        "published_at": {
+          "selector": ".entry time",
+          "attribute": "datetime"
+        },
+        "score": {
+          "selector": ".entry .score",
+          "attribute": "title"
+        },
+        "subreddit": {
+          "selector": ".entry .subreddit"
+        },
+        "comments": {
+          "selector": ".entry a.comments"
+        }
+      },
+      "default_limit": 5,
+      "max_scrolls": 2,
+      "empty_selector": ".search-result-listing .noresults, #siteTable .noresults",
+      "parameter_extractors": {
+        "name": {
+          "pattern": "^(?:r/)?([A-Za-z0-9_]{2,21})$",
+          "group": 1
+        }
+      },
+      "root_selector": "div.content"
+    }
+  }
+}

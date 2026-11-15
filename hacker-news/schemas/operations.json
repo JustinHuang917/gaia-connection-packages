@@ -1,0 +1,88 @@
+{
+  "list_top": {
+    "title": "热门消息",
+    "description": "按官方热门榜顺序返回消息 ID。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "title": "条数",
+          "minimum": 1,
+          "maximum": 100,
+          "default": 10
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "list_new": {
+    "title": "最新消息",
+    "description": "按官方最新榜顺序返回消息 ID。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "title": "条数",
+          "minimum": 1,
+          "maximum": 100,
+          "default": 10
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "get_item": {
+    "title": "消息详情",
+    "description": "根据消息 ID 获取标题、链接、评分与评论等真实内容。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "title": "消息 ID",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "discussion": {
+    "title": "帖子讨论",
+    "description": "输入 HN 帖子 ID 或链接，读取真实评论树。limit 为最多评论请求数，depth 为层级；正文为 HTML。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "title": "帖子 ID 或链接",
+          "pattern": "^(?:https://news\\.ycombinator\\.com/item\\?id=)?[1-9][0-9]*$"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50,
+          "default": 30
+        },
+        "depth": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "default": 3
+        }
+      },
+      "required": [
+        "target"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,33 @@
+schema: gaia.connection-adapter/v1
+id: xiaohongshu
+version: 1.0.8
+protocol: browser
+runtime: browser
+auth:
+  type: browser_session
+browser:
+  engine: playwright
+  name: 小红书
+  login_url: https://www.xiaohongshu.com/explore
+  probe_url: https://www.xiaohongshu.com/explore
+  allowed_domains:
+  - xiaohongshu.com
+  - rednote.com
+  - xhslink.com
+  - xhscdn.com
+  - xiaohongshu.com.cn
+  - rednotecdn.com
+  - rnote.com
+  - rnotecdn.com
+  - xhscdn.net
+  authenticated_selector: li.user.side-bar-component a.link-wrapper[href^="/user/profile/"]
+network:
+  allowed_hosts:
+  - xiaohongshu.com
+  - rednote.com
+  - xhslink.com
+  - rnote.com
+  - rnotecdn.com
+  - rednotecdn.com
+  - xhscdn.com
+  - xhscdn.net

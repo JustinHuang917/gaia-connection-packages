@@ -1,0 +1,15 @@
+schema: gaia.connection-adapter/v1
+id: instagram
+version: 1.0.0
+protocol: browser
+runtime: browser
+auth:
+  type: browser_session
+browser:
+  engine: playwright
+  name: Instagram
+  login_url: https://www.instagram.com/accounts/login/
+  allowed_domains: [instagram.com, cdninstagram.com, fbcdn.net, facebook.com]
+  authenticated_selector: 'a[href^="/direct/inbox"], a[href^="/accounts/edit"], a[href^="/accounts/center"]'
+network:
+  allowed_hosts: [www.instagram.com, instagram.com, static.cdninstagram.com]

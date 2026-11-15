@@ -1,0 +1,76 @@
+{
+  "read": {
+    "title": "视频详情",
+    "description": "读取标题、频道、发布日期、简介和统计，不下载视频。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000,
+          "title": "视频 ID 或 HTTPS YouTube 链接"
+        }
+      },
+      "required": [
+        "target"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "search": {
+    "title": "搜索视频",
+    "description": "搜索公开 YouTube 视频。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "title": "关键词"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20,
+          "default": 5,
+          "title": "条数"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "subtitle": {
+    "title": "读取字幕",
+    "description": "读取人工或自动字幕，按语言优先级选择一份。无字幕明确报错，不做语音转写。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000,
+          "title": "视频 ID 或 HTTPS YouTube 链接"
+        },
+        "lang": {
+          "type": "string",
+          "maxLength": 100,
+          "default": "zh-Hans,zh,zh-CN,zh-TW,en,en-orig",
+          "title": "语言优先级",
+          "description": "逗号分隔，最多六种语言，如 zh-Hans,en。"
+        }
+      },
+      "required": [
+        "target"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

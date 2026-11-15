@@ -1,0 +1,22 @@
+schema: gaia.connection-adapter/v1
+id: reddit
+version: 1.0.2
+protocol: browser
+runtime: browser
+auth:
+  type: browser_session
+browser:
+  engine: playwright
+  name: Reddit
+  login_url: https://www.reddit.com/login/
+  probe_url: https://www.reddit.com/login/
+  auth_success:
+    url_pattern: '^https://www\.reddit\.com/login/?(?:\?.*)?$'
+    text_pattern: '你已登录|您已登入|You are (?:already )?logged in'
+  allowed_domains: [reddit.com, redd.it, redditstatic.com, redditmedia.com, recaptcha.net, gstatic.com, google.com]
+  authenticated_selector: 'a[href$="/settings/"], a[href$="/settings"]'
+  auth_menu:
+    role: button
+    name_pattern: 'Expand user menu|Open user menu|Open profile menu|展开用户菜单|展開使用者選單'
+network:
+  allowed_hosts: [www.reddit.com, old.reddit.com, redd.it]

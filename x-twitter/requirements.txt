@@ -1,0 +1,1 @@
+# No package-level dependencies; browser engine is managed by the platform.

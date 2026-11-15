@@ -1,0 +1,112 @@
+{
+  "search": {
+    "title": "搜索视频",
+    "description": "按关键词读取公开视频搜索结果；可能受平台风控限制。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "title": "关键词"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20,
+          "default": 5,
+          "title": "条数"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "read": {
+    "title": "视频详情",
+    "description": "通过 bili-cli video 读取视频详情。输入 BV 号或 HTTPS Bilibili 视频链接。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "pattern": "^(?:https://(?:www\\.)?bilibili\\.com/video/)?BV[0-9A-Za-z]{10}/?(?:\\?[^\\s]*)?$",
+          "title": "BV 号或 Bilibili 视频链接"
+        }
+      },
+      "required": [
+        "target"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "hot": {
+    "title": "热门视频",
+    "description": "读取 Bilibili 第一页热门视频。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20,
+          "default": 10,
+          "title": "条数"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    }
+  },
+  "subtitle": {
+    "title": "读取字幕",
+    "description": "读取指定分 P 的字幕，默认第 1 P。复用 bili-cli 原生登录状态；无字幕明确报错。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "pattern": "^(?:https://(?:www\\.)?bilibili\\.com/video/)?BV[0-9A-Za-z]{10}/?(?:\\?[^\\s]*)?$",
+          "title": "BV 号或 Bilibili 视频链接"
+        },
+        "part": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000,
+          "default": 1,
+          "title": "分 P 编号"
+        }
+      },
+      "required": [
+        "target"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "parts": {
+    "title": "视频分 P 列表",
+    "description": "列出同一 BV 视频的所有分 P：编号、CID、标题与时长。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "pattern": "^(?:https://(?:www\\.)?bilibili\\.com/video/)?BV[0-9A-Za-z]{10}/?(?:\\?[^\\s]*)?$",
+          "title": "BV 号或 Bilibili 视频链接"
+        }
+      },
+      "required": [
+        "target"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "profile": {
+    "title": "用户主页",
+    "description": "读取指定用户主页的标题与公开简介。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "title": "Instagram 用户名",
+          "pattern": "^[A-Za-z0-9_.]{1,30}$"
+        }
+      },
+      "required": [
+        "username"
+      ],
+      "additionalProperties": false
+    },
+    "browser_action": {
+      "kind": "profile",
+      "url_template": "https://www.instagram.com/{username}/"
+    }
+  },
+  "posts": {
+    "title": "最近帖子链接",
+    "description": "读取页面实际展示的帖子链接；未加载的数据不会补造。",
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "title": "Instagram 用户名",
+          "pattern": "^[A-Za-z0-9_.]{1,30}$"
+        },
+        "limit": {
+          "type": "integer",
+          "title": "最多条数",
+          "minimum": 1,
+          "maximum": 20,
+          "default": 6
+        }
+      },
+      "required": [
+        "username"
+      ],
+      "additionalProperties": false
+    },
+    "browser_action": {
+      "kind": "post_links",
+      "url_template": "https://www.instagram.com/{username}/"
+    }
+  }
+}
