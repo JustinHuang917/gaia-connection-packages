@@ -1,6 +1,6 @@
 schema: gaia.connection-adapter/v1
 id: public-web
-version: 1.2.0
+version: 1.2.2
 protocol: browser
 runtime: browser
 auth:
@@ -11,3 +11,4 @@ browser:
   public: true
 network:
   allowed_hosts: []
+description: 读取公开网页可见正文，按关键词查找文本及上下文。

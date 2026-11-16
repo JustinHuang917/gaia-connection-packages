@@ -1,6 +1,6 @@
 schema: gaia.connection-adapter/v1
 id: hacker-news
-version: 1.1.0
+version: 1.1.2
 protocol: http
 runtime: python3
 auth:
@@ -10,3 +10,4 @@ entrypoints:
   invoke: adapter.news:invoke
 network:
   allowed_hosts: [hacker-news.firebaseio.com]
+description: 读取 Hacker News 热门、最新消息、帖子详情与评论讨论。

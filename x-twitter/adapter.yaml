@@ -1,6 +1,6 @@
 schema: gaia.connection-adapter/v1
 id: x-twitter
-version: 1.1.0
+version: 1.1.2
 protocol: browser
 runtime: browser
 auth:
@@ -13,3 +13,4 @@ browser:
   authenticated_selector: 'a[data-testid="AppTabBar_Home_Link"], button[data-testid="SideNav_AccountSwitcher_Button"]'
 network:
   allowed_hosts: [x.com, api.x.com, abs.twimg.com, pbs.twimg.com]
+description: 通过登录浏览器读取 X/Twitter 帖子、用户动态及搜索结果。

@@ -1,6 +1,6 @@
 schema: gaia.connection-adapter/v1
 id: instagram
-version: 1.0.0
+version: 1.0.2
 protocol: browser
 runtime: browser
 auth:
@@ -13,3 +13,4 @@ browser:
   authenticated_selector: 'a[href^="/direct/inbox"], a[href^="/accounts/edit"], a[href^="/accounts/center"]'
 network:
   allowed_hosts: [www.instagram.com, instagram.com, static.cdninstagram.com]
+description: 通过登录浏览器读取 Instagram 页面提供的公开内容。

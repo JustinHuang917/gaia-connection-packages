@@ -50,8 +50,21 @@ def main():
                 or not isinstance(data.get('version'), str) or not data['version']
                 or data['id'] in seen):
             raise ValueError(f'invalid or duplicate manifest: {directory.name}')
+        guide = files.get('SKILL.md', b'').decode('utf-8')
+        parts = guide.split('---', 2)
+        meta = yaml.safe_load(parts[1]) if len(parts) == 3 and not parts[0].strip() else None
+        if (not isinstance(meta, dict) or meta.get('name') != data['id']
+                or not meta.get('description') or len(guide.encode('utf-8')) > 4096):
+            raise ValueError(f'invalid or missing SKILL.md: {directory.name}')
+        for name, content in files.items():
+            if name.startswith('references/') and (not name.endswith('.md') or len(content) > 16384):
+                raise ValueError(f'invalid reference: {directory.name}/{name}')
+        operations = json.loads(files['schemas/operations.json'])
+        for name, operation in operations.items():
+            if not all(operation.get(key) for key in ('title', 'description', 'effect', 'input_schema')):
+                raise ValueError(f'incomplete operation description: {directory.name}/{name}')
         seen.add(data['id'])
-        items.append(dict(id=data['id'], version=data['version'], path=directory.name,
+        items.append(dict(id=data['id'], description=data.get('description', ''), version=data['version'], path=directory.name,
                           sha256=content_digest(files)))
         if args.out_dir:
             args.out_dir.mkdir(parents=True, exist_ok=True)

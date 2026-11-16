@@ -1,6 +1,6 @@
 schema: gaia.connection-adapter/v1
 id: coros-gateway
-version: 1.0.0
+version: 1.0.2
 protocol: mcp
 runtime: python3
 entrypoints:
@@ -11,3 +11,4 @@ entrypoints:
   invoke: adapter.auth:invoke
 network:
   allowed_hosts: [mcp.coros.com, mcpcn.coros.com, mcpeu.coros.com, mcpus.coros.com]
+description: 查询已授权 COROS 用户的账户资料和指定日期范围运动记录。

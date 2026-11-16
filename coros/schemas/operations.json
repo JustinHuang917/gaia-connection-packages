@@ -1,1 +1,54 @@
-{"list_tools":{"effect":"read","input_schema":{"type":"object","additionalProperties":false}},"query_user":{"effect":"read","input_schema":{"type":"object","additionalProperties":false}},"query_sport_records":{"effect":"read","input_schema":{"type":"object","properties":{"startDate":{"type":"string","pattern":"^[0-9]{8}$"},"endDate":{"type":"string","pattern":"^[0-9]{8}$"},"sportTypeCodes":{"type":"array","items":{"type":"integer"}},"limit":{"type":"integer","minimum":1,"maximum":100}},"required":["startDate","endDate"],"additionalProperties":false}}}
+{
+  "list_tools": {
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false
+    },
+    "title": "发现 COROS 工具",
+    "description": "读取 COROS 网关实际可用的工具目录及其说明，用于确认提供方字段和运动代码。"
+  },
+  "query_user": {
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "additionalProperties": false
+    },
+    "title": "账户资料",
+    "description": "读取当前连接已授权用户的 COROS 账户资料。"
+  },
+  "query_sport_records": {
+    "effect": "read",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "startDate": {
+          "type": "string",
+          "pattern": "^[0-9]{8}$"
+        },
+        "endDate": {
+          "type": "string",
+          "pattern": "^[0-9]{8}$"
+        },
+        "sportTypeCodes": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "required": [
+        "startDate",
+        "endDate"
+      ],
+      "additionalProperties": false
+    },
+    "title": "查询运动记录",
+    "description": "按 YYYYMMDD 起止日期查询实际运动记录；可按已确认运动代码筛选。"
+  }
+}

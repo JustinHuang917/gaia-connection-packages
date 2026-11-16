@@ -1,6 +1,6 @@
 schema: gaia.connection-adapter/v1
 id: finance-market-public-public
-version: 2.0.0
+version: 2.0.2
 protocol: http
 runtime: cli
 tool: finance-market
@@ -8,3 +8,4 @@ auth:
   type: none
 network:
   allowed_hosts: [qt.gtimg.cn, finance.qq.com, push2.eastmoney.com, push2his.eastmoney.com, query1.finance.yahoo.com, query2.finance.yahoo.com, fc.yahoo.com]
+description: 查询无需 API Key 的公开财经行情、历史价格及已声明的数据能力。

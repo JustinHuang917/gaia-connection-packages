@@ -3,63 +3,73 @@
   "packages": [
     {
       "id": "bilibili",
-      "version": "2.1.1",
+      "description": "搜索和读取 Bilibili 视频、分 P 列表与指定分 P 字幕。",
+      "version": "2.1.3",
       "path": "bilibili",
-      "sha256": "e0dddd31902393f61bc85ed798f2d3dacf028143bc1f67a0f94106bd898eccb2"
+      "sha256": "b2613a1a3de613f8ccd13976deb5a4ad262760b85e3b67bf21529672120e9961"
     },
     {
       "id": "coros-gateway",
-      "version": "1.0.0",
+      "description": "查询已授权 COROS 用户的账户资料和指定日期范围运动记录。",
+      "version": "1.0.2",
       "path": "coros",
-      "sha256": "69aec7144137cd68df93cf8d8c4eb2c93703c8aaf815d32490b8876a82fbe1c4"
+      "sha256": "d21c42b7831922973acd605b36bfb5ab856c0d8133e26b196514802a69838750"
     },
     {
       "id": "finance-market-public-public",
-      "version": "2.0.0",
+      "description": "查询无需 API Key 的公开财经行情、历史价格及已声明的数据能力。",
+      "version": "2.0.2",
       "path": "finance-market",
-      "sha256": "2affba2ed9ad2c8231a1903cc5a119733d6ae16069be01eb9fc9f1a4b0aa989c"
+      "sha256": "6e4c016b2c50d1f9f7a650f0ba12746e5261c3d1df265bcab0cc157fae11b15e"
     },
     {
       "id": "hacker-news",
-      "version": "1.1.0",
+      "description": "读取 Hacker News 热门、最新消息、帖子详情与评论讨论。",
+      "version": "1.1.2",
       "path": "hacker-news",
-      "sha256": "49a76ff72e9693f0a6af2960759bb58f4224be69c10a8aa996e535d1de87ea5d"
+      "sha256": "b85325b195272ce147e88594aa371f20b3b43eb550bf5eec36585c299e26eea5"
     },
     {
       "id": "instagram",
-      "version": "1.0.0",
+      "description": "通过登录浏览器读取 Instagram 页面提供的公开内容。",
+      "version": "1.0.2",
       "path": "instagram",
-      "sha256": "55864410fd5a3781174cdf3d0a6f7cdf23a1888d4e7abf111cb06987c6d848ca"
+      "sha256": "c13ff999b86ab05ff4fb3eb7d5e0b85438c5c0bdeee1ce54acfb0168575bba17"
     },
     {
       "id": "public-web",
-      "version": "1.2.0",
+      "description": "读取公开网页可见正文，按关键词查找文本及上下文。",
+      "version": "1.2.2",
       "path": "public-web",
-      "sha256": "829b7bfb51f45ec5e94c4b8da331d859d9a16df2b5f716d3421590d0c7ee4db8"
+      "sha256": "e1081f876df06ae8177137837b28775aa36fee69dbff8715df7b4e88902c19bb"
     },
     {
       "id": "reddit",
-      "version": "1.0.2",
+      "description": "使用登录浏览器读取 Reddit 公开帖子、搜索及讨论。",
+      "version": "1.0.4",
       "path": "reddit",
-      "sha256": "ac244fe2489e1875c546a0a63ed64b0a455b54ffb219874ca9931488f300aab4"
+      "sha256": "e9a53a9ad2ae111e1c1f35349851d23f3029e92c968c45259703e68287b15c7b"
     },
     {
       "id": "x-twitter",
-      "version": "1.1.0",
+      "description": "通过登录浏览器读取 X/Twitter 帖子、用户动态及搜索结果。",
+      "version": "1.1.2",
       "path": "x-twitter",
-      "sha256": "c35c3430624c56a1188ac42a4a39a2fabf00bc403c4396e277232abc701ac014"
+      "sha256": "36e765c55db0f08d660af457f9e67dbf716381bc22d396c7a2cc4f80ac216e5c"
     },
     {
       "id": "xiaohongshu",
-      "version": "1.0.8",
+      "description": "使用登录浏览器搜索小红书笔记并读取笔记与用户资料。",
+      "version": "1.0.10",
       "path": "xiaohongshu",
-      "sha256": "5e6fcedc584694e7868b42b525e3e3d35e00ba33ee2607e8d62e9348bd7e2d43"
+      "sha256": "7a5f7ed7323fb92cc9758699fabbd455bbf5a4ea7560fa46a8d260f3153ec844"
     },
     {
       "id": "youtube",
-      "version": "1.1.2",
+      "description": "搜索 YouTube 视频，读取视频信息与可用字幕；不进行语音转写。",
+      "version": "1.1.4",
       "path": "youtube",
-      "sha256": "cc3a67609f7be9b6a0811839f84cdef929a15afc907728d4b2eb728433ba0b8a"
+      "sha256": "c4c4c180fd4d99281fa174e648f2d38fcaca5dab1e0f5533f4dfebe2324d0e6d"
     }
   ]
 }

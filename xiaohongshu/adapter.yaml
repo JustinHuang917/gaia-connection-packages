@@ -1,6 +1,6 @@
 schema: gaia.connection-adapter/v1
 id: xiaohongshu
-version: 1.0.8
+version: 1.0.10
 protocol: browser
 runtime: browser
 auth:
@@ -31,3 +31,4 @@ network:
   - rednotecdn.com
   - xhscdn.com
   - xhscdn.net
+description: 使用登录浏览器搜索小红书笔记并读取笔记与用户资料。

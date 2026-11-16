@@ -1,6 +1,6 @@
 schema: gaia.connection-adapter/v1
 id: reddit
-version: 1.0.2
+version: 1.0.4
 protocol: browser
 runtime: browser
 auth:
@@ -20,3 +20,4 @@ browser:
     name_pattern: 'Expand user menu|Open user menu|Open profile menu|展开用户菜单|展開使用者選單'
 network:
   allowed_hosts: [www.reddit.com, old.reddit.com, redd.it]
+description: 使用登录浏览器读取 Reddit 公开帖子、搜索及讨论。

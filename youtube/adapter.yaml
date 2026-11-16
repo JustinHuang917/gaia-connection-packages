@@ -1,6 +1,6 @@
 schema: gaia.connection-adapter/v1
 id: youtube
-version: 1.1.2
+version: 1.1.4
 protocol: http
 runtime: cli
 tool: yt-dlp
@@ -8,3 +8,4 @@ auth:
   type: browser_cookie
 network:
   allowed_hosts: [www.youtube.com, youtube.com, youtu.be, www.google.com]
+description: 搜索 YouTube 视频，读取视频信息与可用字幕；不进行语音转写。
