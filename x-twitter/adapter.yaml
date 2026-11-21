@@ -1,6 +1,6 @@
 schema: gaia.connection-adapter/v1
 id: x-twitter
-version: 1.1.2
+version: 1.1.3
 protocol: browser
 runtime: browser
 auth:
@@ -9,7 +9,7 @@ browser:
   engine: playwright
   name: X / Twitter
   login_url: https://x.com/i/flow/login
-  allowed_domains: [x.com, twitter.com, twimg.com, recaptcha.net, gstatic.com, google.com, arkoselabs.com, funcaptcha.com]
+  allowed_domains: [x.com, twitter.com, twimg.com, recaptcha.net, gstatic.com, google.com, accounts.google.com, googleapis.com, googleusercontent.com, arkoselabs.com, funcaptcha.com]
   authenticated_selector: 'a[data-testid="AppTabBar_Home_Link"], button[data-testid="SideNav_AccountSwitcher_Button"]'
 network:
   allowed_hosts: [x.com, api.x.com, abs.twimg.com, pbs.twimg.com]
