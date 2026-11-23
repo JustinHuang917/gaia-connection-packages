@@ -24,17 +24,17 @@
     },
     {
       "id": "hacker-news",
-      "description": "读取 Hacker News 热门、最新消息、帖子详情与评论讨论。",
-      "version": "1.1.2",
+      "description": "使用声明式浏览器读取 Hacker News 热门、最新消息、帖子详情与页面已加载讨论，无需登录。",
+      "version": "2.0.0",
       "path": "hacker-news",
-      "sha256": "b85325b195272ce147e88594aa371f20b3b43eb550bf5eec36585c299e26eea5"
+      "sha256": "dc88bc9b60b678ed2a4eae3b3440eeb67750d2d29574f02cb45e2fe93b98c04d"
     },
     {
       "id": "instagram",
       "description": "通过登录浏览器读取 Instagram 页面提供的公开内容。",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "path": "instagram",
-      "sha256": "c13ff999b86ab05ff4fb3eb7d5e0b85438c5c0bdeee1ce54acfb0168575bba17"
+      "sha256": "59bec1dfabe36d64c75c012c1e35c1b98a84fcce8ccfeb7a96ecb05e5c7c7180"
     },
     {
       "id": "public-web",

@@ -1,37 +1,15 @@
 # 操作参考
 
-以下参数以本版本 Schema 为准，调用前使用 connection_describe 读取完整契约。
+包使用 browser runtime，与小红书采用相同声明式执行器，所有结果均为浏览器标准包装。
 
-## list_top
+## list_top / list_new
 
-按官方热门榜顺序返回消息 ID。
-
-性质：read。
-- `limit`（可选）：条数。约束：`{"type": "integer", "default": 10, "minimum": 1, "maximum": 100}`。
-
-最小参数示例：`{}`。
-
-## list_new
-
-按官方最新榜顺序返回消息 ID。
-
-性质：read。
-- `limit`（可选）：条数。约束：`{"type": "integer", "default": 10, "minimum": 1, "maximum": 100}`。
-
-最小参数示例：`{}`。
+参数 limit：整数，1–30，默认 10。返回 data.items，完整新闻条目按提供方页面顺序排列，不包含自动详情请求。元数据不存在时为 null。
 
 ## get_item
 
-根据消息 ID 获取标题、链接、评分与评论等真实内容。
-
-性质：read。
-- `id`（必填）：消息 ID。约束：`{"type": "integer", "minimum": 1}`。
+参数 id：正整数，必填。返回 data.items 中的帖子详情，不加载评论树。
 
 ## discussion
 
-输入 HN 帖子 ID 或链接，读取真实评论树。limit 为最多评论请求数，depth 为层级；正文为 HTML。
-
-性质：read。
-- `target`（必填）：帖子 ID 或链接。约束：`{"type": "string", "pattern": "^(?:https://news\\.ycombinator\\.com/item\\?id=)?[1-9][0-9]*$"}`。
-- `limit`（可选）：limit。约束：`{"type": "integer", "default": 30, "minimum": 1, "maximum": 50}`。
-- `depth`（可选）：depth。约束：`{"type": "integer", "default": 3, "minimum": 1, "maximum": 5}`。
+参数 id：正整数，必填。返回帖子与已加载前 50 条评论；items[0].raw.comments 为平铺评论，comments_loaded/comments_state 表示本次读取覆盖范围。不自动翻页、不返回完整树，也不推断未加载的评论内容。
