@@ -1,6 +1,6 @@
 schema: gaia.connection-adapter/v1
 id: hacker-news
-version: 2.0.0
+version: 2.0.1
 protocol: browser
 runtime: browser
 auth:

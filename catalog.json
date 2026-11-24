@@ -25,9 +25,9 @@
     {
       "id": "hacker-news",
       "description": "使用声明式浏览器读取 Hacker News 热门、最新消息、帖子详情与页面已加载讨论，无需登录。",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "path": "hacker-news",
-      "sha256": "dc88bc9b60b678ed2a4eae3b3440eeb67750d2d29574f02cb45e2fe93b98c04d"
+      "sha256": "c4abcd9efce8db1da24d7eb298fa1e6e6b362d93c887398839f134b33fc8540a"
     },
     {
       "id": "instagram",

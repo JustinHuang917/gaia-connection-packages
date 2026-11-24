@@ -19,7 +19,7 @@
       "kind": "records",
       "requires_auth": false,
       "url_template": "https://news.ycombinator.com/",
-      "root_selector": "table.itemlist",
+      "root_selector": "#hnmain",
       "item_selector": "tr.athing",
       "ready_selector": "tr.athing .titleline a",
       "fields": {
@@ -99,7 +99,7 @@
       "kind": "records",
       "requires_auth": false,
       "url_template": "https://news.ycombinator.com/newest",
-      "root_selector": "table.itemlist",
+      "root_selector": "#hnmain",
       "item_selector": "tr.athing",
       "ready_selector": "tr.athing .titleline a",
       "fields": {
